@@ -95,7 +95,7 @@ class CRM_Qrcodelist_Page_QRCodeList extends CRM_Core_Page {
     inner join
       civicrm_participant p on p.contact_id = c.id
     left outer join
-      civicrm_email on e.contact_id = c.id and e.is_primary = 1
+      civicrm_email e on e.contact_id = c.id and e.is_primary = 1
     left outer join
       civicrm_option_value ov on ov.value = c.prefix_id and ov.option_group_id = 6
     where
