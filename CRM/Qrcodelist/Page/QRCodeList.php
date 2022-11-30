@@ -44,6 +44,7 @@ class CRM_Qrcodelist_Page_QRCodeList extends CRM_Core_Page {
     echo '<td>Organization</td>';
     echo '<td>Job Title</td>';
     echo '<td>Email</td>';
+    echo '<td>Allow pictures?</td>';
     echo '<td>QR-Checksum</td>';
     echo '</tr>';
   }
@@ -60,6 +61,7 @@ class CRM_Qrcodelist_Page_QRCodeList extends CRM_Core_Page {
     echo '<td>' . $dao->organization_name . '</td>';
     echo '<td>' . $dao->job_title . '</td>';
     echo '<td>' . $dao->email . '</td>';
+    echo '<td>' . $dao->allow_pictures . '</td>';
     echo '<td>' . $this->getChecksum($dao->participant_id, $dao->hash) . '</td>';
     echo '</tr>';
   }
@@ -89,6 +91,7 @@ class CRM_Qrcodelist_Page_QRCodeList extends CRM_Core_Page {
       c.organization_name,
       c.job_title,
       e.email,
+      pp.photos_may_be_taken_during_the_m_600 allow_pictures
       c.hash
     from
       civicrm_contact c
@@ -98,6 +101,8 @@ class CRM_Qrcodelist_Page_QRCodeList extends CRM_Core_Page {
       civicrm_email e on e.contact_id = c.id and e.is_primary = 1
     left outer join
       civicrm_option_value ov on ov.value = c.prefix_id and ov.option_group_id = 6
+    left outer join
+      civicrm_value_participant_g_204 pp on pp.entity_id = p.id
     where
       p.event_id = $eventId
     and
