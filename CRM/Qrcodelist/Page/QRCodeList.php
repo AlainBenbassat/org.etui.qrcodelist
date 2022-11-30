@@ -102,7 +102,7 @@ class CRM_Qrcodelist_Page_QRCodeList extends CRM_Core_Page {
       ov.label prefix,
       c.first_name,
       c.last_name,
-      c.organization_name,
+      org.organisation_550 organization_name,
       c.job_title,
       e.email,
       pp.do_you_agree_that_your_picture_i_595 allow_pictures,
@@ -111,6 +111,8 @@ class CRM_Qrcodelist_Page_QRCodeList extends CRM_Core_Page {
       civicrm_contact c
     inner join
       civicrm_participant p on p.contact_id = c.id
+    left outer join
+      civicrm_value_belonging_to_221 org on c.id = org.entity_id
     left outer join
       civicrm_email e on e.contact_id = c.id and e.is_primary = 1
     left outer join
