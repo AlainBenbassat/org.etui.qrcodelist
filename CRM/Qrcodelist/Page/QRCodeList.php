@@ -67,10 +67,10 @@ class CRM_Qrcodelist_Page_QRCodeList extends CRM_Core_Page {
   }
 
   private function booleanToYesNo($v) {
-    if ($v === 1) {
+    if ($v == 1) {
       return 'Yes';
     }
-    elseif ($v === 0) {
+    elseif ($v == 0) {
       return 'No';
     }
 
