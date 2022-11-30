@@ -57,7 +57,7 @@ class CRM_Qrcodelist_Page_QRCodeList extends CRM_Core_Page {
     echo '<td>' . $dao->prefix . '</td>';
     echo '<td>' . $dao->first_name . '</td>';
     echo '<td>' . $dao->last_name . '</td>';
-    echo '<td>' . $dao->organization . '</td>';
+    echo '<td>' . $dao->organization_name . '</td>';
     echo '<td>' . $dao->job_title . '</td>';
     echo '<td>' . $dao->email . '</td>';
     echo '<td>' . $this->getChecksum($dao->participant_id, $dao->hash) . '</td>';
