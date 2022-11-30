@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<extension key="org.etui.qrcodelist" type="module">
+  <file>qrcodelist</file>
+  <name>org.etui.qrcodelist</name>
+  <description>Show participants with QR-code</description>
+  <license>AGPL-3.0</license>
+  <maintainer>
+    <author>Alain Benbassat</author>
+    <email>alain@businessandcode.eu</email>
+  </maintainer>
+  <urls>
+    <url desc="Main Extension Page">http://FIXME</url>
+    <url desc="Licensing">http://www.gnu.org/licenses/agpl-3.0.html</url>
+  </urls>
+  <releaseDate>2022-11-30</releaseDate>
+  <version>1.0</version>
+  <develStage>stable</develStage>
+  <compatibility>
+    <ver>5.0</ver>
+  </compatibility>
+  <comments>This is a quick and dirty solution. To be reworked in less urgent times...</comments>
+  <classloader>
+    <psr0 prefix="CRM_" path="."/>
+    <psr4 prefix="Civi\" path="Civi"/>
+  </classloader>
+  <civix>
+    <namespace>CRM/Qrcodelist</namespace>
+    <format>22.10.0</format>
+    <angularModule>crmQrcodelist</angularModule>
+  </civix>
+  <mixins>
+    <mixin>mgd-php@1.0.0</mixin>
+    <mixin>setting-php@1.0.0</mixin>
+    <mixin>menu-xml@1.0.0</mixin>
+  </mixins>
+</extension>

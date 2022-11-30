@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<menu>
+  <item>
+    <path>civicrm/qrcodelist</path>
+    <page_callback>CRM_Qrcodelist_Page_QRCodeList</page_callback>
+    <title>QRCodeList</title>
+    <access_arguments>access CiviCRM</access_arguments>
+  </item>
+</menu>
