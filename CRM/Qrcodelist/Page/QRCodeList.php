@@ -61,9 +61,20 @@ class CRM_Qrcodelist_Page_QRCodeList extends CRM_Core_Page {
     echo '<td>' . $dao->organization_name . '</td>';
     echo '<td>' . $dao->job_title . '</td>';
     echo '<td>' . $dao->email . '</td>';
-    echo '<td>' . $dao->allow_pictures . '</td>';
+    echo '<td>' . $this->booleanToYesNo($dao->allow_pictures) . '</td>';
     echo '<td>' . $this->getChecksum($dao->participant_id, $dao->hash) . '</td>';
     echo '</tr>';
+  }
+
+  private function booleanToYesNo($v) {
+    if ($v === 1) {
+      return 'Yes';
+    }
+    elseif ($v === 0) {
+      return 'No';
+    }
+
+    return '';
   }
 
   private function printParticipantList($dao) {
