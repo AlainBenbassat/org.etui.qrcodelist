@@ -91,7 +91,7 @@ class CRM_Qrcodelist_Page_QRCodeList extends CRM_Core_Page {
       c.organization_name,
       c.job_title,
       e.email,
-      pp.photos_may_be_taken_during_the_m_600 allow_pictures,
+      pp.do_you_agree_that_your_picture_i_595 allow_pictures,
       c.hash
     from
       civicrm_contact c
