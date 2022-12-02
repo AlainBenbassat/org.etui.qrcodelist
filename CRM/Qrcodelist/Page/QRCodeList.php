@@ -2,6 +2,15 @@
 use CRM_Qrcodelist_ExtensionUtil as E;
 
 class CRM_Qrcodelist_Page_QRCodeList extends CRM_Core_Page {
+  private $roleIdMapping = [
+    1 => 'Attendee',
+    2 => '',
+    3 => '',
+    4 => 'Speaker',
+    5 => 'Network Member',
+    6 => 'Moderator',
+    7 => 'Discussant',
+  ];
 
   /**
    *  Quick and dirty participant list with QR Code
@@ -44,6 +53,7 @@ class CRM_Qrcodelist_Page_QRCodeList extends CRM_Core_Page {
     echo '<td>Organization</td>';
     echo '<td>Job Title</td>';
     echo '<td>Email</td>';
+    echo '<td>Role</td>';
     echo '<td>Allow pictures?</td>';
     echo '<td>QR-Checksum</td>';
     echo '</tr>';
@@ -61,9 +71,21 @@ class CRM_Qrcodelist_Page_QRCodeList extends CRM_Core_Page {
     echo '<td>' . $dao->organization_name . '</td>';
     echo '<td>' . $dao->job_title . '</td>';
     echo '<td>' . $dao->email . '</td>';
+    echo '<td>' . $this->rolesToString($dao->role_id) . '</td>';
     echo '<td>' . $this->booleanToYesNo($dao->allow_pictures) . '</td>';
     echo '<td>' . $this->getChecksum($dao->participant_id, $dao->hash) . '</td>';
     echo '</tr>';
+  }
+
+  private function rolesToString($roleIdField) {
+    $roles = [];
+
+    $roleIds = explode(CRM_Core_DAO::VALUE_SEPARATOR, $roleIdField);
+    foreach ($roleIds as $roleId) {
+      $roles[] = $this->roleIdMapping[$roleId];
+    }
+
+    return implode(', ', $roles);
   }
 
   private function booleanToYesNo($v) {
@@ -104,6 +126,7 @@ class CRM_Qrcodelist_Page_QRCodeList extends CRM_Core_Page {
       c.last_name,
       org.organisation_550 organization_name,
       c.job_title,
+      p.role_id,
       e.email,
       pp.do_you_agree_that_your_picture_i_595 allow_pictures,
       c.hash
